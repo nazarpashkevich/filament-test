@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Transaction;
+use App\Models\TransactionTax;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +17,20 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $transaction = Transaction::create([
+            'reference' => 'asdasdas',
+            'amount' => '12300',
+            'currency' => 'USD',
+            'status' => 'success',
+        ]);
+
+        TransactionTax::create([
+            'transaction_id' => $transaction->id,
+            'calc_id' => '1sdafas',
+            'reference' => 'asdcsvsd',
+            'amount' => '1200',
+            'rate' => '2200',
+            'country' => 'IE'
         ]);
     }
 }
